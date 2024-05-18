@@ -9,7 +9,8 @@ const { log } = console;
 const app = express();
 const port = process.env.PORT;
 
-app.use(cors());
+app.options('*', cors());
+app.use(cors({ origin: ['*', 'http://localhost:3000'] }));
 app.use(express.json());
 
 app.use(eventsRouter);
