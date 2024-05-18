@@ -2,11 +2,11 @@
   "name": "events-board-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "npm run build && cross-env NODE_ENV=development node build/server.js",
+    "dev": "npm run build && cross-env NODE_ENV=development node build/index.js",
     "build": "rm -rf ./build && tsc",
-    "server": "npm run build && cross-env NODE_ENV=production node build/server.js",
+    "server": "npm run build && cross-env NODE_ENV=production node build/index.js",
     "db:docker-up": "docker-compose -f docker-compose-pg.yaml up -d",
     "db:seed-prod": "cross-env NODE_ENV=production node ./src/lib/database/seed.mjs",
     "db:seed-dev": "cross-env NODE_ENV=development node ./src/lib/database/seed.mjs"

@@ -20,3 +20,5 @@ app.listen(port, async () => {
   await connectDb().catch(console.log);
   log('Connection to db established');
 });
+
+export default app;
