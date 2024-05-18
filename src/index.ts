@@ -6,8 +6,9 @@ import { connectDb } from './lib/database/db';
 
 const { log } = console;
 
-const app = express();
 const port = process.env.PORT;
+
+const app = express();
 
 app.use(cors());
 app.use(express.json());
