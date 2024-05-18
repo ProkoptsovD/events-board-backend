@@ -9,7 +9,6 @@ const { log } = console;
 const app = express();
 const port = process.env.PORT;
 
-app.options('*', cors());
 app.use(cors());
 app.use(express.json());
 
