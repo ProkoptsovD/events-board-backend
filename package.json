@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run build && cross-env NODE_ENV=development node build/index.js",
-    "build": "rm -rf ./build && tsc",
-    "server": "npm run build && cross-env NODE_ENV=production node build/index.js",
+    "dev": "npm run build && cross-env NODE_ENV=development node public/index.js",
+    "start": "cross-env NODE_ENV=development node public/index.js",
+    "build": "tsc",
+    "build:local": "rm -rf ./public && tsc",
+    "server": "npm run build && cross-env NODE_ENV=production node public/index.js",
     "db:docker-up": "docker-compose -f docker-compose-pg.yaml up -d",
     "db:seed-prod": "cross-env NODE_ENV=production node ./src/lib/database/seed.mjs",
     "db:seed-dev": "cross-env NODE_ENV=development node ./src/lib/database/seed.mjs"
