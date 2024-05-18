@@ -11,6 +11,6 @@
     "types": ["node"],
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "netlify"],
   "exclude": ["src/**/*.spec.ts"]
 }
