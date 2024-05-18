@@ -7,10 +7,6 @@
       "config": { "maxLambdaSize": "15mb" }
     }
   ],
-  "routes": [
-    { "src": "/static/(.*)", "dest": "/public/$1" },
-    { "src": "/(.*)", "dest": "/src/index.ts" }
-  ],
   "headers": [
     {
       "source": "/(.*)",
