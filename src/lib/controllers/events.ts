@@ -13,6 +13,7 @@ import {
   EventSearchParamsSchema,
   EventIdSchema,
 } from '../validation/event.schema';
+import { toRegistrationDTO } from '../dto/registration.mapper';
 
 const getAll = async (req: Request, res: Response) => {
   try {
@@ -41,21 +42,21 @@ const getAll = async (req: Request, res: Response) => {
 
 const getOne = async (req: Request, res: Response) => {
   const { id: rawId } = req.params;
-  const id = parseInt(rawId, 10);
 
-  if (isNaN(id)) {
+  const validation = EventIdSchema.safeParse({ id: rawId });
+
+  if (!validation.success) {
     return res
       .status(statusCode.BAD_REQUEST)
       .json({ message: 'Invalid record ID. Must be number (integer)' });
   }
 
   try {
+    const { id } = validation.data;
     const event = await eventsService.selectEventById(id);
     const data = toEventDTO(event);
 
-    res.json({
-      data,
-    });
+    res.json({ data });
   } catch (error) {
     console.log(error);
     res
@@ -76,9 +77,7 @@ const getEventParticipants = async (req: Request, res: Response) => {
     const { id } = validation.data;
     const participants = await eventsService.selectParticipants(id);
 
-    res.json({
-      data: participants,
-    });
+    res.json({ data: participants });
   } catch (error) {
     console.log(error);
     res
@@ -133,7 +132,9 @@ const registerToEvent = async (req: Request, res: Response) => {
         savedParticipant!.id
       );
 
-      return res.json(registration);
+      const data = toRegistrationDTO(registration);
+
+      return res.json({ data });
     }
 
     const registration = await eventsRegistrationService.register(
@@ -141,7 +142,9 @@ const registerToEvent = async (req: Request, res: Response) => {
       participantRecord!.id
     );
 
-    res.status(statusCode.CREATED).json(registration);
+    const data = toRegistrationDTO(registration);
+
+    res.status(statusCode.CREATED).json({ data });
   } catch (error) {
     console.log(error);
     res

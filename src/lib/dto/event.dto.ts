@@ -52,7 +52,12 @@ export type ParticipantDatabaseDTO = {
   birth_date: Date;
   event_channel: string;
 };
+export type RegistrationDatabaseDTO = {
+  event_id: number;
+  participant_id: number;
+};
 
 export type CreateParticipantDatabaseDTO = Omit<ParticipantDatabaseDTO, 'id'>;
 export type ParticipantDTO = KeysToCamelCase<ParticipantDatabaseDTO>;
 export type CreateParticipantDTO = Omit<ParticipantDTO, 'id'>;
+export type RegistrationDTO = KeysToCamelCase<RegistrationDatabaseDTO>;

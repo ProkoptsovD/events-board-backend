@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { EVENTS_ALLOWED_VALUES } from '../const';
+import { CreateParticipantSchema } from './participant.schema';
 
 export const EventSearchParamsSchema = z.object({
   q: z.string().nullable().optional(),
@@ -14,13 +15,6 @@ export const EventSearchParamsSchema = z.object({
 
 export const EventIdSchema = z.object({
   id: z.coerce.number().int(),
-});
-
-export const CreateParticipantSchema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-  birthDate: z.coerce.date(),
-  eventChannel: z.enum(EVENTS_ALLOWED_VALUES.eventChanel),
 });
 
 export const RegisterToEventSchema = z.object({

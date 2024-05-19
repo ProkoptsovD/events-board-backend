@@ -17,7 +17,7 @@ export const eventsRegistrationService = {
     try {
       const queryResult = await db.query(
         `
-          SELECT COUNT(*) AS registration_count
+          SELECT COUNT(*)
             FROM participants
             JOIN event_registration
               ON participants.id = event_registration.participant_id
